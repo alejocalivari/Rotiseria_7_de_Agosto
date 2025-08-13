@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>7 de Agosto · Pizzería y Hamburguesería</title>
+<meta name="description" content="Pizzas al fuego, hamburguesas jugosas y milanesas XL. Pedí por WhatsApp.">
+<style>
+:root{
+  --bg:#0f0f10; --card:#17181a; --muted:#9aa0a6; --text:#e6e8ea;
+  --primary:#ffd166; --accent:#ef476f; --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;line-height:1.5}
+a{color:var(--text);text-decoration:none}
+.container{max-width:1000px;margin:auto;padding:0 20px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.site-header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(15,15,16,.7);border-bottom:1px solid #222;z-index:20}
+.site-header .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.nav a{margin-left:12px;opacity:.9}
+.nav .btn{margin-left:16px}
+.hero{padding:72px 0;background:linear-gradient(180deg,rgba(255,209,102,.12),transparent 40%), radial-gradient(900px 300px at 20% -20%,rgba(239,71,111,.12),transparent 60%)}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px}
+.hero p{color:var(--muted);margin:0 0 20px}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid #333;background:#1d1f22}
+.btn-primary{background:var(--primary);color:#1b1b1c;border-color:transparent;font-weight:700}
+.btn-small{padding:8px 12px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0}
+.card{background:var(--card);padding:16px;border-radius:var(--radius);border:1px solid #222}
+.card h3{margin:0 0 6px}
+.card .price{color:var(--primary);font-weight:700}
+.menu-section{padding:32px 0}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.menu-block{background:var(--card);border:1px solid #222;border-radius:var(--radius);padding:16px}
+.menu-block h3{margin:0 0 10px}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #2a2b2e}
+.menu-item:last-child{border-bottom:none}
+.menu-item .price{color:var(--primary);font-weight:700}
+.promos{list-style:none;padding:0;margin:8px 0 0}
+.promos li{background:var(--card);border-radius:var(--radius);border:1px solid #222;padding:12px;margin:8px 0}
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.reviews blockquote{margin:0;padding:12px 14px;background:var(--card);border-left:4px solid var(--primary);border-radius:8px}
+.map-section{padding:32px 0}
+.map-embed{border-radius:var(--radius);overflow:hidden;border:1px solid #222}
+.contacto ul{list-style:none;padding:0}
+.contacto li{padding:6px 0;color:var(--muted)}
+.site-footer{border-top:1px solid #222;padding:18px 0;margin-top:24px;color:var(--muted)}
+.nota{color:var(--muted);font-size:14px;margin-top:6px}
+code{background:#111;padding:2px 6px;border:1px solid #222;border-radius:6px}
+@media (max-width:720px){
+  .nav a{display:none}
+  .nav .btn{display:inline-block}
+  .site-header .row{padding:10px 0}
+}
+</style>
+</head>
+<body>
+<!-- Editá en el script del final: phoneE164, whatsappPrefill, instagram, menuData -->
+<header class="site-header">
+  <div class="container row">
+    <a class="brand" href="#inicio"><span>7 de Agosto</span></a>
+    <nav class="nav">
+      <a href="#menu">Menú</a>
+      <a href="#promos">Promos</a>
+      <a href="#mapa">Cómo llegar</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-small" id="ctaHeader" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </nav>
+  </div>
+</header>
+<main id="inicio">
+  <section class="hero">
+    <div class="container">
+      <h1>7 de Agosto</h1>
+      <p>Pizzas, burgers y milanesas XL.</p>
+      <div class="cta-group">
+        <a class="btn btn-primary" id="ctaHero" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        <a class="btn" href="#menu">Ver menú</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="destacados" class="container">
+    <h2>Productos destacados</h2>
+    <div id="cardsDestacados" class="cards"></div>
+  </section>
+
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <h2>Menú</h2>
+      <div id="menuGrid" class="menu-grid"></div>
+    </div>
+  </section>
+
+  <section id="promos" class="container">
+    <h2>Promos todos los Miercoles!</h2>
+    <ul class="promos">
+      <li><strong>Muzarella</strong> Dos Muzarella 10.000</li>
+      <li><strong>Pizza a Eleccion</strong> Dos pizza a eleccion 15.000</li>
+    </ul>
+  </section>
+
+
+ <section id="mapa" class="map-section">
+  <div class="container">
+    <h2>Estamos acá</h2>
+
+    <!-- Foto del frente -->
+    <img src="frente.jpeg?v=2"
+         alt="Pizzería-Hamburguesería 7 de Agosto"
+         style="display:block;max-width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+
+    <!-- Mapa -->
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.142138748719!2d-58.2293308!3d-32.4901637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95afdb0f7a0ae6af%3A0x42271be6bfd2ba33!2sDr.%20Clark%20433%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos!5e0!3m2!1ses-419!2sar!4v1691680000000!5m2!1ses-419!2sar"
+              width="100%" height="380" style="border:0;"
+              allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <section id="contacto" class="container contacto">
+    <h2>Contacto</h2>
+    <ul>
+      <li>Tel/WhatsApp: <a id="telLink" href="#" target="_blank" rel="noopener"></a></li>
+      <li>Gmail: <a href="#" id="igLink" target="_blank" rel="noopener">luisazcona234@gmail.com</a></li>
+      <li>Horarios: <span id="horarios">De Miercoles a Domingo 20hs a 00hs</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container row">
+    <small>© <span id="year"></span> 7 de Agosto — Pizzería y Hamburguesería</small>
+    <small>Hecho por @alejo.clv</small>
+  </div>
+</footer>
+
+<script>
+// ========= Config rápida (editá acá) =========
+const SITE_CONFIG = {
+  phoneE164: "3442550593", // ⚠️ reemplazar por teléfono real (sin "+")
+  whatsappPrefill: "Hola, quiero encargar",
+};
+
+// Menú completo (de tu foto, podés ajustar valores)
+const menuData = [
+  { categoria: "Pizzas", items: [
+    { nombre: "Muzzarella", precio: 7000 },
+    { nombre: "Especial", precio: 10000 },
+    { nombre: "Especial con huevo", precio: 11000 },
+    { nombre: "Fugazza", precio: 9000 },
+    { nombre: "Fugazza con jamón", precio: 11000 },
+    { nombre: "Roquefort", precio: 14000 },
+    { nombre: "Napolitana", precio: 9500 },
+    { nombre: "Morrón con huevo", precio: 10000 },
+    { nombre: "Provenzal", precio: 9000 },
+    { nombre: "Calabresa", precio: 12000 },
+    { nombre: "Super Viena", precio: 9500 }
+  ]},
+  { categoria: "Tortillas", items: [
+    { nombre: "Simple", precio: 5500 },
+    { nombre: "Especial", precio: 6500 },
+    { nombre: "Española", precio: 7000 }
+  ]},
+  { categoria: "Hamburguesas", items: [
+    { nombre: "Simple", precio: 6500 },
+    { nombre: "Especial", precio: 8000 }
+  ]},
+  { categoria: "Milanesas", items: [
+    { nombre: "Milanesa XXL", precio: 16000 },
+    { nombre: "Milanesa Napolitana", precio: 18000 },
+    { nombre: "Milanesa a Caballo", precio: 17000 }
+  ]},
+  {
+  categoria: "Empanadas",
+  items: [
+    { nombre: "Carne (docena)", precio: 10000 },
+    { nombre: "Jamón y queso (docena)", precio: 10000 },
+    { nombre: "Verdura (docena)", precio: 10000 },
+    { nombre: "Unidad", precio: 1000 }
+  ]
+},
+  { categoria: "Papas fritas", items: [
+    { nombre: "Comunes", precio: 4000 },
+    { nombre: "Con cheddar", precio: 6000 },
+    { nombre: "Con provenzal", precio: 5000 }
+  ]}
+];
+
+const destacados = [
+  { nombre: "Muzzarella", desc: "Clásica, abundante. La más pedida.", precio: 7000 },
+  { nombre: "Burger Especial", desc: "Carne, queso, salsas.", precio: 8000 },
+  { nombre: "Mila XL", desc: "ideal para compartir.", precio: 16000 }
+];
+
+// ========= Lógica =========
+(function(){
+  const $menuGrid = document.querySelector('#menuGrid');
+  const $cardsDest = document.querySelector('#cardsDestacados');
+  const $ctaHero = document.querySelector('#ctaHero');
+  const $ctaHeader = document.querySelector('#ctaHeader');
+  const $telLink = document.querySelector('#telLink');
+  const $igLink = document.querySelector('#igLink');
+
+  const phone = SITE_CONFIG.phoneE164; // 3442550593
+  const prefill = encodeURIComponent(SITE_CONFIG.whatsappPrefill || "Hola!");
+  const wa = `https://wa.me/${phone}?text=${prefill}`;
+
+  [$ctaHero, $ctaHeader].forEach(el => el && el.setAttribute('href', wa));
+  if($telLink){ $telLink.textContent = `+${phone}`; $telLink.href = wa; }
+  if($igLink && SITE_CONFIG.instagram){ $igLink.href = SITE_CONFIG.instagram; }
+
+  // Render destacados
+  if(destacados && $cardsDest){
+    $cardsDest.innerHTML = destacados.map(d => `
+      <article class="card">
+        <h3>${d.nombre}</h3>
+        <p>${d.desc || ""}</p>
+        <div class="price">$ ${formatPrice(d.precio)}</div>
+      </article>
+    `).join('');
+  }
+
+  // Render menú
+  if(menuData && $menuGrid){
+    $menuGrid.innerHTML = menuData.map(cat => `
+      <div class="menu-block">
+        <h3>${cat.categoria}</h3>
+        ${cat.items.map(it => itemRow(it)).join('')}
+      </div>
+    `).join('');
+  }
+
+  // Footer año
+  const y = document.querySelector('#year');
+  if(y){ y.textContent = new Date().getFullYear(); }
+
+  function itemRow(it){
+    return `<div class="menu-item">
+      <span>${it.nombre}</span>
+      <span class="price">$ ${formatPrice(it.precio)}</span>
+    </div>`;
+  }
+  function formatPrice(n){
+    try{ return new Intl.NumberFormat('es-AR').format(n); }catch(e){ return n; }
+  }
+})();
+</script>
+</body>
+</html>
